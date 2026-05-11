@@ -32,9 +32,11 @@ export class TaskListComponent {
     })
   );
 
-  setFilter(f: Filter) { this.filterSubject.next(f); }
+  remaining$ = this.taskService.getRemainingCount();
 
+  setFilter(f: Filter)  { this.filterSubject.next(f); }
   onAdd(title: string)  { this.taskService.addTask(title); }
   onToggle(id: number)  { this.taskService.toggleTask(id); }
   onDelete(id: number)  { this.taskService.deleteTask(id); }
+  onClearDone()         { this.taskService.clearDone(); }
 }

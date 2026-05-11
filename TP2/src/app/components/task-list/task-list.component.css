@@ -45,3 +45,34 @@ h1 {
   color: #888;
   padding: 32px;
 }
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+}
+
+.remaining {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.clear-btn {
+  padding: 6px 14px;
+  background: transparent;
+  border: 1px solid #e57373;
+  color: #e57373;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.clear-btn:hover {
+  background: #e57373;
+  color: white;
+}

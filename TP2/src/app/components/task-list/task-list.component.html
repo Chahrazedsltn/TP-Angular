@@ -24,4 +24,9 @@
       </ul>
     }
   }
+
+  <div class="footer">
+    <span class="remaining">{{ remaining$ | async }} tâche(s) restante(s)</span>
+    <button class="clear-btn" (click)="onClearDone()">Effacer les terminées</button>
+  </div>
 </div>
