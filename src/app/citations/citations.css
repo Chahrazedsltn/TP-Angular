@@ -1,0 +1,58 @@
+.citations-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 40px 48px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  max-width: 520px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.4);
+}
+
+.guillemet {
+  font-size: 5rem;
+  line-height: 0.5;
+  opacity: 0.4;
+  font-family: Georgia, serif;
+  align-self: flex-start;
+}
+
+.texte {
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  font-style: italic;
+}
+
+.auteur {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.btn-changer {
+  margin-top: 8px;
+  padding: 10px 24px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn-changer:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px);
+}
+
+.btn-changer:active {
+  transform: translateY(0);
+}
