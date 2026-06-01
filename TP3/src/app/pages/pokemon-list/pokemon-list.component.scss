@@ -38,26 +38,34 @@ h1 { text-align: center; text-transform: capitalize; }
 
 .info { text-align: center; color: #888; padding: 32px; }
 
-.footer {
+.pagination {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
   margin-top: 32px;
+  flex-wrap: wrap;
 }
 
-.count { font-size: 13px; color: #999; }
-
-.load-more {
-  padding: 12px 28px;
-  background: #ef5350;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  font-size: 15px;
+.page-btn {
+  min-width: 36px;
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 8px;
+  font-size: 14px;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: all 0.15s;
 
-  &:hover:not(:disabled) { background: #c62828; }
-  &:disabled { opacity: 0.5; cursor: default; }
+  &:hover:not(:disabled) { border-color: #ef5350; color: #ef5350; }
+  &.active { background: #ef5350; color: white; border-color: #ef5350; font-weight: 700; }
+  &:disabled { opacity: 0.35; cursor: default; }
+}
+
+.page-info {
+  text-align: center;
+  font-size: 13px;
+  color: #999;
+  margin-top: 8px;
 }
