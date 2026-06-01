@@ -8,17 +8,28 @@
 
     <h3>{{ enEdition() ? '✏️ Modifier' : '➕ Nouveau contact' }}</h3>
 
-    <input #nomInput   type="text"  placeholder="Nom"    [value]="enEdition()?.nom   ?? ''" required />
-    <input #emailInput type="email" placeholder="Email"  [value]="enEdition()?.email ?? ''" required />
-    <input #telInput   type="tel"   placeholder="Tél"    [value]="enEdition()?.tel   ?? ''" />
+    <input #nomInput   type="text"  placeholder="Nom"   [value]="enEdition()?.nom   ?? ''" required />
+
+    <!-- DEVOIR 2 — Validation email -->
+    <input #emailInput type="email" placeholder="Email" [value]="enEdition()?.email ?? ''" required
+           (input)="validerEmail(emailInput.value)" />
+    @if (emailInvalide()) {
+      <span class="validation-error">Adresse email invalide</span>
+    }
+
+    <input #telInput   type="tel"   placeholder="Tél"   [value]="enEdition()?.tel   ?? ''" />
 
     <div class="actions">
-      <button type="submit">{{ enEdition() ? 'Mettre à jour' : 'Ajouter' }}</button>
+      <button type="submit" [disabled]="emailInvalide()">{{ enEdition() ? 'Mettre à jour' : 'Ajouter' }}</button>
       @if (enEdition()) {
         <button type="button" class="ghost" (click)="annulerEdition()">Annuler</button>
       }
     </div>
   </form>
+
+  <!-- DEVOIR 1 — Recherche -->
+  <input class="recherche" type="search" placeholder="🔍 Rechercher un contact…"
+         [value]="recherche()" (input)="recherche.set($any($event.target).value)" />
 
   <!-- ÉTATS -->
   @if (loading()) {
@@ -26,9 +37,9 @@
   } @else if (error()) {
     <p class="error">❌ {{ error() }} <button (click)="charger()">Réessayer</button></p>
   } @else {
-    <!-- LISTE -->
+    <!-- LISTE filtrée -->
     <ul class="liste">
-      @for (c of contacts(); track c.id) {
+      @for (c of contactsFiltres(); track c.id) {
         <li>
           <div class="infos">
             <strong>{{ c.nom }}</strong>
@@ -40,7 +51,7 @@
           </div>
         </li>
       } @empty {
-        <li class="info">Aucun contact. Ajoute le premier !</li>
+        <li class="info">Aucun contact trouvé.</li>
       }
     </ul>
   }
