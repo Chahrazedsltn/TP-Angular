@@ -1,6 +1,11 @@
 <a routerLink="/" class="back">← Retour à la liste</a>
 
-@if (pokemon(); as p) {
+@if (error()) {
+  <div class="error-box">
+    <p>{{ error() }}</p>
+    <a routerLink="/">Retour à la liste</a>
+  </div>
+} @else if (pokemon(); as p) {
   <div class="detail">
     <div class="header">
       <h1>{{ p.name }} <small>#{{ p.id }}</small></h1>
@@ -17,7 +22,10 @@
 
     <div class="types">
       @for (t of p.types; track t.type.name) {
-        <span class="type">{{ t.type.name }}</span>
+        <span
+          class="type"
+          [style.background]="typeColor(t.type.name)"
+        >{{ t.type.name }}</span>
       }
     </div>
 

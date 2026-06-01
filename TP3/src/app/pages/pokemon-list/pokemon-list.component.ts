@@ -1,6 +1,7 @@
 import { Component, inject, signal, computed } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { toSignal, toObservable } from '@angular/core/rxjs-interop';
+import { Subject, switchMap, debounceTime } from 'rxjs';
 import { PokemonApiService } from '../../services/pokemon-api.service';
 
 @Component({
@@ -12,9 +13,27 @@ import { PokemonApiService } from '../../services/pokemon-api.service';
 export class PokemonListComponent {
   private api = inject(PokemonApiService);
 
-  pokemons = toSignal(this.api.getList(), { initialValue: [] });
+  // Pagination
+  private limit = signal(151);
 
-  recherche = signal('');
+  pokemons = toSignal(
+    toObservable(this.limit).pipe(
+      switchMap(l => this.api.getList(l))
+    ),
+    { initialValue: [] }
+  );
+
+  chargerPlus() {
+    this.limit.update(l => l + 151);
+  }
+
+  // Recherche avec debounce (300ms)
+  private searchSubject = new Subject<string>();
+
+  recherche = toSignal(
+    this.searchSubject.pipe(debounceTime(300)),
+    { initialValue: '' }
+  );
 
   filtres = computed(() => {
     const q = this.recherche().toLowerCase().trim();
@@ -22,6 +41,6 @@ export class PokemonListComponent {
   });
 
   onSearch(event: Event) {
-    this.recherche.set((event.target as HTMLInputElement).value);
+    this.searchSubject.next((event.target as HTMLInputElement).value);
   }
 }

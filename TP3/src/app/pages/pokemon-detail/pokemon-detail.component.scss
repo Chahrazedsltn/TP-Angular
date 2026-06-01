@@ -1,5 +1,17 @@
 .back { display: inline-block; margin-bottom: 16px; color: #ef5350; text-decoration: none; }
 
+.error-box {
+  text-align: center;
+  padding: 48px 24px;
+  background: #fff3f3;
+  border: 1px solid #ffcdd2;
+  border-radius: 16px;
+  color: #c62828;
+
+  p { font-size: 18px; margin-bottom: 16px; }
+  a { color: #ef5350; }
+}
+
 .detail {
   background: white;
   border: 1px solid #eee;
@@ -32,10 +44,12 @@
   display: flex; justify-content: center; gap: 8px; margin: 12px 0;
   .type {
     text-transform: capitalize;
-    background: #eceff1;
-    padding: 4px 12px;
+    color: white;
+    padding: 4px 14px;
     border-radius: 999px;
     font-size: 13px;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
   }
 }
 

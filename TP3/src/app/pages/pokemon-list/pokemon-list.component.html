@@ -21,4 +21,11 @@
       <p class="info">Aucun Pokémon ne correspond à « {{ recherche() }} »</p>
     }
   </div>
+
+  <div class="pagination">
+    <button class="load-more" (click)="chargerPlus()">
+      Charger 151 de plus
+    </button>
+    <span class="count">{{ pokemons().length }} Pokémon chargés</span>
+  </div>
 }
