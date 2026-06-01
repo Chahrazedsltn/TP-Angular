@@ -22,10 +22,10 @@
     }
   </div>
 
-  <div class="pagination">
-    <button class="load-more" (click)="chargerPlus()">
-      Charger 151 de plus
-    </button>
+  <div class="footer">
     <span class="count">{{ pokemons().length }} Pokémon chargés</span>
+    <button class="load-more" (click)="chargerPlus()" [disabled]="chargement()">
+      @if (chargement()) { Chargement… } @else { Charger 151 de plus }
+    </button>
   </div>
 }

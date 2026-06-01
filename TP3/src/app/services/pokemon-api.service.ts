@@ -12,10 +12,10 @@ export class PokemonApiService {
   private http = inject(HttpClient);
   private baseUrl = 'https://pokeapi.co/api/v2';
 
-  // GET : la liste des 151 premiers, transformée en aperçus avec image
-  getList(limit = 151): Observable<PokemonPreview[]> {
+  // GET : la liste des Pokémon avec limit et offset
+  getList(limit = 151, offset = 0): Observable<PokemonPreview[]> {
     return this.http
-      .get<PokemonListResponse>(`${this.baseUrl}/pokemon?limit=${limit}`)
+      .get<PokemonListResponse>(`${this.baseUrl}/pokemon?limit=${limit}&offset=${offset}`)
       .pipe(
         map(res =>
           res.results.map(p => {

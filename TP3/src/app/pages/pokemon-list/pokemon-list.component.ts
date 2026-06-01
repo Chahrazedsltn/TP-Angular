@@ -1,8 +1,9 @@
 import { Component, inject, signal, computed } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { toSignal, toObservable } from '@angular/core/rxjs-interop';
-import { Subject, switchMap, debounceTime } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { Subject, debounceTime } from 'rxjs';
 import { PokemonApiService } from '../../services/pokemon-api.service';
+import { PokemonPreview } from '../../models/pokemon.model';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -13,27 +14,30 @@ import { PokemonApiService } from '../../services/pokemon-api.service';
 export class PokemonListComponent {
   private api = inject(PokemonApiService);
 
-  // Pagination
-  private limit = signal(151);
+  // Liste cumulée des Pokémon chargés
+  pokemons = signal<PokemonPreview[]>([]);
+  chargement = signal(false);
 
-  pokemons = toSignal(
-    toObservable(this.limit).pipe(
-      switchMap(l => this.api.getList(l))
-    ),
-    { initialValue: [] }
-  );
+  constructor() {
+    // Chargement initial
+    this.chargerBatch(0);
+  }
+
+  private chargerBatch(offset: number) {
+    this.chargement.set(true);
+    this.api.getList(151, offset).subscribe(batch => {
+      this.pokemons.update(prev => [...prev, ...batch]);
+      this.chargement.set(false);
+    });
+  }
 
   chargerPlus() {
-    this.limit.update(l => l + 151);
+    this.chargerBatch(this.pokemons().length);
   }
 
   // Recherche avec debounce (300ms)
   private searchSubject = new Subject<string>();
-
-  recherche = toSignal(
-    this.searchSubject.pipe(debounceTime(300)),
-    { initialValue: '' }
-  );
+  recherche = toSignal(this.searchSubject.pipe(debounceTime(300)), { initialValue: '' });
 
   filtres = computed(() => {
     const q = this.recherche().toLowerCase().trim();

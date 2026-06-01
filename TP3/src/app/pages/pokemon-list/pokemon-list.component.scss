@@ -38,13 +38,15 @@ h1 { text-align: center; text-transform: capitalize; }
 
 .info { text-align: center; color: #888; padding: 32px; }
 
-.pagination {
+.footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   margin-top: 32px;
 }
+
+.count { font-size: 13px; color: #999; }
 
 .load-more {
   padding: 12px 28px;
@@ -55,7 +57,7 @@ h1 { text-align: center; text-transform: capitalize; }
   font-size: 15px;
   cursor: pointer;
   transition: background 0.15s;
-  &:hover { background: #c62828; }
-}
 
-.count { font-size: 13px; color: #999; }
+  &:hover:not(:disabled) { background: #c62828; }
+  &:disabled { opacity: 0.5; cursor: default; }
+}
