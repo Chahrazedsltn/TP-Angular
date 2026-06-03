@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
 
 :root {
-  --bg: #0f0f1a;
-  --bg-card: #1a1a2e;
-  --bg-card-hover: #16213e;
+  --bg: #0a0e1a;
+  --bg-card: rgba(15, 20, 40, 0.85);
+  --bg-card-hover: rgba(20, 28, 55, 0.95);
   --accent: #00d4aa;
   --accent-2: #7c3aed;
   --text: #e2e8f0;
@@ -11,7 +11,7 @@
   --alive: #22c55e;
   --dead: #ef4444;
   --unknown: #94a3b8;
-  --border: #2d2d44;
+  --border: rgba(100, 120, 200, 0.2);
 }
 
 * {
@@ -24,13 +24,20 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ── Body — fond géré via .bg-image dans app.ts ── */
 body {
   font-family: 'Nunito', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: var(--bg);
   color: var(--text);
   min-height: 100vh;
   line-height: 1.6;
+  background-color: transparent;
+  position: relative;
+  overflow-x: hidden;
 }
+
+/* Tout le contenu au-dessus du fond */
+nav { position: relative; z-index: 100; }
+main { position: relative; z-index: 2; }
 
 a {
   text-decoration: none;
@@ -50,31 +57,11 @@ h1, h2, h3 {
 }
 
 /* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #060918; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-::-webkit-scrollbar-track {
-  background: var(--bg);
-}
+button, a, input, select, textarea { transition: all 0.2s ease; }
 
-::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
-}
-
-/* Global transitions */
-button, a, input, select, textarea {
-  transition: all 0.2s ease;
-}
-
-/* Selection color */
-::selection {
-  background: var(--accent);
-  color: #000;
-}
+::selection { background: var(--accent); color: #000; }

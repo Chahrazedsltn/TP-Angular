@@ -35,7 +35,7 @@ import { FormsModule } from '@angular/forms';
     .search-input {
       width: 100%;
       padding: 0.65rem 1rem 0.65rem 2.5rem;
-      background: #1a1a2e;
+      background: rgba(10, 15, 45, 0.75);
       border: 1px solid #2d2d44;
       border-radius: 12px;
       color: #e2e8f0;

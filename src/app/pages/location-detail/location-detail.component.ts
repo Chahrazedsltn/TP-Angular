@@ -80,7 +80,7 @@ import { ErrorMessageComponent } from '../../components/error-message/error-mess
       align-items: center;
       gap: 1.5rem;
       padding: 2rem;
-      background: #1a1a2e;
+      background: rgba(10, 15, 45, 0.75);
       border: 1px solid #2d2d44;
       border-radius: 20px;
       margin-bottom: 2.5rem;
@@ -160,7 +160,7 @@ import { ErrorMessageComponent } from '../../components/error-message/error-mess
       flex-direction: column;
       align-items: center;
       text-decoration: none;
-      background: #1a1a2e;
+      background: rgba(10, 15, 45, 0.75);
       border: 1px solid #2d2d44;
       border-radius: 14px;
       overflow: hidden;
@@ -190,7 +190,7 @@ import { ErrorMessageComponent } from '../../components/error-message/error-mess
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      border: 2px solid #1a1a2e;
+      border: 2px solid rgba(10, 15, 45, 0.75);
     }
     .sdot-alive { background: #22c55e; box-shadow: 0 0 6px #22c55e; }
     .sdot-dead { background: #ef4444; }

@@ -29,7 +29,7 @@ import { FavorisService } from '../../services/favoris.service';
   `,
   styles: [`
     .card {
-      background: #1a1a2e;
+      background: rgba(10, 15, 45, 0.75);
       border-radius: 16px;
       overflow: hidden;
       border: 1px solid #2d2d44;
