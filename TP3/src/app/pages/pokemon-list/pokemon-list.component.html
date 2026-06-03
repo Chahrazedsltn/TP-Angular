@@ -1,0 +1,41 @@
+<h1>Pokédex</h1>
+
+<input
+  type="text"
+  class="search"
+  placeholder="Rechercher un Pokémon…"
+  (input)="onSearch($event)"
+/>
+
+@if (pokemons().length === 0) {
+  <p class="info">Chargement des Pokémon…</p>
+} @else {
+  <div class="grid">
+    @for (p of pagines(); track p.id) {
+      <a class="card" [routerLink]="['/pokemon', p.name]">
+        <img [src]="p.image" [alt]="p.name" loading="lazy" />
+        <span class="num">#{{ p.id }}</span>
+        <span class="name">{{ p.name }}</span>
+      </a>
+    } @empty {
+      <p class="info">Aucun Pokémon ne correspond à « {{ recherche() }} »</p>
+    }
+  </div>
+
+  @if (totalPages() > 1) {
+    <nav class="pagination">
+      <button class="page-btn" (click)="prev()" [disabled]="page() === 1">‹</button>
+
+      @for (p of pagesList(); track p) {
+        <button
+          class="page-btn"
+          [class.active]="p === page()"
+          (click)="goTo(p)"
+        >{{ p }}</button>
+      }
+
+      <button class="page-btn" (click)="next()" [disabled]="page() === totalPages()">›</button>
+    </nav>
+    <p class="page-info">Page {{ page() }} / {{ totalPages() }} — {{ filtres().length }} Pokémon</p>
+  }
+}
