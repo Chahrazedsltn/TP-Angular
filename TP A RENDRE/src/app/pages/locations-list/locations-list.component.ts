@@ -14,7 +14,11 @@ import { ErrorMessageComponent } from '../../components/error-message/error-mess
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="page">
-      <h1>Lieux</h1>
+      <div class="page-header">
+        <h1 class="page-title">🌍 Lieux</h1>
+        <p class="page-subtitle">Explorez toutes les dimensions et planètes de l'univers</p>
+      </div>
+
       @if (loading()) {
         <app-loader />
       } @else if (error()) {
@@ -23,9 +27,19 @@ import { ErrorMessageComponent } from '../../components/error-message/error-mess
         <div class="grid">
           @for (loc of locations(); track loc.id) {
             <a [routerLink]="['/locations', loc.id]" class="loc-card">
-              <h3>{{ loc.name }}</h3>
-              <p>{{ loc.type }}</p>
-              <p>{{ loc.dimension }}</p>
+              <div class="loc-icon">🌐</div>
+              <div class="loc-content">
+                <h3 class="loc-name">{{ loc.name }}</h3>
+                <div class="loc-meta">
+                  @if (loc.type) {
+                    <span class="meta-tag">{{ loc.type }}</span>
+                  }
+                  @if (loc.dimension && loc.dimension !== 'unknown') {
+                    <span class="meta-tag dim">{{ loc.dimension }}</span>
+                  }
+                </div>
+              </div>
+              <span class="loc-arrow">→</span>
             </a>
           }
         </div>
@@ -34,10 +48,94 @@ import { ErrorMessageComponent } from '../../components/error-message/error-mess
     </div>
   `,
   styles: [`
-    .page { max-width: 1200px; margin: 0 auto; padding: 2rem; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; }
-    .loc-card { display: block; padding: 1rem; border: 1px solid #ccc; border-radius: 8px; text-decoration: none; color: inherit; }
-    .loc-card:hover { background: #f0f0f0; }
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    .page-header {
+      margin-bottom: 2rem;
+    }
+    .page-title {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #e2e8f0;
+    }
+    .page-subtitle {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      margin-top: 0.25rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .loc-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem;
+      background: #1a1a2e;
+      border: 1px solid #2d2d44;
+      border-radius: 16px;
+      text-decoration: none;
+      color: #e2e8f0;
+      transition: all 0.25s ease;
+    }
+    .loc-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(0, 212, 170, 0.4);
+      box-shadow: 0 8px 24px rgba(0, 212, 170, 0.1);
+      background: #16213e;
+    }
+    .loc-icon {
+      font-size: 1.8rem;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 6px rgba(0, 212, 170, 0.3));
+    }
+    .loc-content {
+      flex: 1;
+      min-width: 0;
+    }
+    .loc-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #e2e8f0;
+      margin-bottom: 0.4rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .loc-meta {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .meta-tag {
+      padding: 0.15rem 0.6rem;
+      background: rgba(0, 212, 170, 0.1);
+      color: #00d4aa;
+      border: 1px solid rgba(0, 212, 170, 0.2);
+      border-radius: 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .meta-tag.dim {
+      background: rgba(124, 58, 237, 0.1);
+      color: #a78bfa;
+      border-color: rgba(124, 58, 237, 0.2);
+    }
+    .loc-arrow {
+      color: #2d2d44;
+      font-size: 1rem;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .loc-card:hover .loc-arrow {
+      color: #00d4aa;
+      transform: translateX(4px);
+    }
   `]
 })
 export class LocationsListComponent implements OnInit {

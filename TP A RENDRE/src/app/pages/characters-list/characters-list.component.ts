@@ -18,16 +18,21 @@ import { FormsModule } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="page">
-      <h1>Personnages</h1>
-      <div class="filters">
+      <div class="page-header">
+        <h1 class="page-title">👤 Personnages</h1>
+        <p class="page-subtitle">{{ totalCharacters() }} personnages dans l'univers Rick & Morty</p>
+      </div>
+
+      <div class="filters-bar">
         <app-search-bar (search)="onSearch($event)" />
         <select [(ngModel)]="status" (ngModelChange)="onStatusChange($event)" class="status-select">
           <option value="">Tous les statuts</option>
-          <option value="alive">Vivant</option>
-          <option value="dead">Mort</option>
-          <option value="unknown">Inconnu</option>
+          <option value="alive">🟢 Vivant</option>
+          <option value="dead">🔴 Mort</option>
+          <option value="unknown">⚪ Inconnu</option>
         </select>
       </div>
+
       @if (loading()) {
         <app-loader />
       } @else if (error()) {
@@ -38,15 +43,73 @@ import { FormsModule } from '@angular/forms';
             <app-character-card [character]="character" (toggleFavori)="onToggleFavori($event)" />
           }
         </div>
+        @if (characters().length === 0) {
+          <div class="empty-state">
+            <div class="empty-icon">🔭</div>
+            <p>Aucun personnage trouvé pour cette recherche.</p>
+          </div>
+        }
         <app-paginator [currentPage]="page()" [totalPages]="totalPages()" (prev)="prevPage()" (next)="nextPage()" />
       }
     </div>
   `,
   styles: [`
-    .page { max-width: 1200px; margin: 0 auto; padding: 2rem; }
-    .filters { display: flex; gap: 1rem; margin-bottom: 1rem; align-items: center; }
-    .status-select { padding: 0.5rem; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    .page-header {
+      margin-bottom: 2rem;
+    }
+    .page-title {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #e2e8f0;
+    }
+    .page-subtitle {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      margin-top: 0.25rem;
+    }
+    .filters-bar {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .status-select {
+      padding: 0.65rem 1rem;
+      background: #1a1a2e;
+      border: 1px solid #2d2d44;
+      border-radius: 12px;
+      color: #e2e8f0;
+      font-size: 0.9rem;
+      font-family: inherit;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    .status-select:focus {
+      border-color: #00d4aa;
+      box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.1);
+    }
+    .status-select option { background: #1a1a2e; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.25rem;
+    }
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: #94a3b8;
+    }
+    .empty-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
   `]
 })
 export class CharactersListComponent implements OnInit {
@@ -60,6 +123,7 @@ export class CharactersListComponent implements OnInit {
   characters = signal<Character[]>([]);
   page = signal(1);
   totalPages = signal(1);
+  totalCharacters = signal(0);
   loading = signal(false);
   error = signal<string | null>(null);
 
@@ -82,6 +146,7 @@ export class CharactersListComponent implements OnInit {
       if (res) {
         this.characters.set(res.results);
         this.totalPages.set(res.info.pages);
+        this.totalCharacters.set(res.info.count);
       }
     });
   }
@@ -100,6 +165,7 @@ export class CharactersListComponent implements OnInit {
       if (res) {
         this.characters.set(res.results);
         this.totalPages.set(res.info.pages);
+        this.totalCharacters.set(res.info.count);
       }
     });
   }
