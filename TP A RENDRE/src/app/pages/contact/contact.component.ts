@@ -85,7 +85,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
       margin-top: 0.25rem;
     }
     .form-container {
-      background: #1a1a2e;
+      background: rgba(10, 15, 45, 0.75);
       border: 1px solid #2d2d44;
       border-radius: 20px;
       padding: 2rem;
@@ -128,7 +128,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
     .required { color: #ef4444; }
     .input {
       padding: 0.75rem 1rem;
-      background: #0f0f1a;
+      background: rgba(6, 10, 30, 0.88);
       border: 1px solid #2d2d44;
       border-radius: 10px;
       color: #e2e8f0;

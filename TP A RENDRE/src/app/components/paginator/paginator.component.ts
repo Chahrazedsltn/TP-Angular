@@ -32,7 +32,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
       align-items: center;
       gap: 0.4rem;
       padding: 0.6rem 1.25rem;
-      background: #1a1a2e;
+      background: rgba(10, 15, 45, 0.75);
       color: #e2e8f0;
       border: 1px solid #2d2d44;
       border-radius: 10px;
@@ -43,7 +43,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
       font-family: inherit;
     }
     .pag-btn:hover:not(:disabled) {
-      background: #16213e;
+      background: rgba(15, 25, 60, 0.85);
       border-color: #00d4aa;
       color: #00d4aa;
       box-shadow: 0 0 12px rgba(0, 212, 170, 0.2);
@@ -57,7 +57,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
       align-items: center;
       gap: 0.4rem;
       padding: 0.5rem 1.25rem;
-      background: #1a1a2e;
+      background: rgba(10, 15, 45, 0.75);
       border: 1px solid #2d2d44;
       border-radius: 10px;
       font-weight: 700;

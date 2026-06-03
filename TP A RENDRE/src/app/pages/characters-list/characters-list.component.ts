@@ -81,7 +81,7 @@ import { FormsModule } from '@angular/forms';
     }
     .status-select {
       padding: 0.65rem 1rem;
-      background: #1a1a2e;
+      background: rgba(10, 15, 45, 0.75);
       border: 1px solid #2d2d44;
       border-radius: 12px;
       color: #e2e8f0;
@@ -95,7 +95,7 @@ import { FormsModule } from '@angular/forms';
       border-color: #00d4aa;
       box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.1);
     }
-    .status-select option { background: #1a1a2e; }
+    .status-select option { background: rgba(10, 15, 45, 0.75); }
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

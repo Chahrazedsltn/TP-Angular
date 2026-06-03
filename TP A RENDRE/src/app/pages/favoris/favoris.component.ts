@@ -87,7 +87,7 @@ import { CharacterCardComponent } from '../../components/character-card/characte
       gap: 1rem;
       padding: 5rem 2rem;
       text-align: center;
-      background: #1a1a2e;
+      background: rgba(10, 15, 45, 0.75);
       border: 1px solid #2d2d44;
       border-radius: 24px;
     }

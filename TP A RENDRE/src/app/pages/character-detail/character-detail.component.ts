@@ -104,7 +104,7 @@ import { ErrorMessageComponent } from '../../components/error-message/error-mess
     .hero {
       display: flex;
       gap: 2.5rem;
-      background: #1a1a2e;
+      background: rgba(10, 15, 45, 0.75);
       border: 1px solid #2d2d44;
       border-radius: 24px;
       overflow: hidden;
@@ -249,7 +249,7 @@ import { ErrorMessageComponent } from '../../components/error-message/error-mess
       flex-direction: column;
       gap: 0.3rem;
       padding: 0.85rem 1rem;
-      background: #1a1a2e;
+      background: rgba(10, 15, 45, 0.75);
       border: 1px solid #2d2d44;
       border-radius: 12px;
       text-decoration: none;
@@ -257,7 +257,7 @@ import { ErrorMessageComponent } from '../../components/error-message/error-mess
     }
     .ep-chip:hover {
       border-color: #00d4aa;
-      background: #16213e;
+      background: rgba(15, 25, 60, 0.85);
       transform: translateY(-2px);
       box-shadow: 0 6px 16px rgba(0, 212, 170, 0.1);
     }

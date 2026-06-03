@@ -70,7 +70,7 @@ import { ErrorMessageComponent } from '../../components/error-message/error-mess
       flex-direction: column;
       gap: 0.5rem;
       padding: 1.25rem;
-      background: #1a1a2e;
+      background: rgba(10, 15, 45, 0.75);
       border: 1px solid #2d2d44;
       border-radius: 16px;
       text-decoration: none;
@@ -94,7 +94,7 @@ import { ErrorMessageComponent } from '../../components/error-message/error-mess
       transform: translateY(-4px);
       border-color: rgba(0, 212, 170, 0.35);
       box-shadow: 0 10px 28px rgba(0, 212, 170, 0.1);
-      background: #16213e;
+      background: rgba(15, 25, 60, 0.85);
     }
     .ep-card:hover::before { opacity: 1; }
     .ep-header {

@@ -71,7 +71,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
     }
     .nav-links a:hover {
       color: #e2e8f0;
-      background: #1a1a2e;
+      background: rgba(10, 15, 45, 0.75);
       border-color: #2d2d44;
     }
     .nav-links a.active {
@@ -93,7 +93,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
     }
     main {
       min-height: calc(100vh - 64px);
-      background: #0f0f1a;
+      background: transparent;
     }
   `]
 })
