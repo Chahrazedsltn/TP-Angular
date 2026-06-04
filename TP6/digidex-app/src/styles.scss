@@ -1,0 +1,54 @@
+/* ===== VARIABLES ===== */
+:root {
+  --purple:    #7c3aed;
+  --purple-dark: #5b21b6;
+  --purple-light: #ede9fe;
+  --gold:      #f59e0b;
+  --bg:        #0f0a1e;
+  --surface:   #1a1133;
+  --card:      #221744;
+  --border:    #3b2d6e;
+  --text:      #e2d9f3;
+  --muted:     #9d8ec4;
+  --error:     #f87171;
+  --radius:    12px;
+}
+
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ===== BASE ===== */
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+a { color: var(--purple-light); text-decoration: none;
+  &:hover { color: #fff; text-decoration: underline; }
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.5rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+input {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  padding: 0.55rem 1rem;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+
+  &:focus { border-color: var(--purple); }
+  &::placeholder { color: var(--muted); }
+}

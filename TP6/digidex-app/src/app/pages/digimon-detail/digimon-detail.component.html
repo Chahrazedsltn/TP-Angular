@@ -1,0 +1,59 @@
+<div class="page">
+  <a class="back" routerLink="/">← Retour à la liste</a>
+
+  @if (loading()) {
+    <p class="loading">⏳ Chargement…</p>
+  } @else if (digimon(); as d) {
+    <div class="detail">
+      <div class="detail-header">
+        <img [src]="d.images?.[0]?.href" [alt]="d.name" />
+        <div class="info">
+          <h1>{{ d.name }}</h1>
+          <div class="badges">
+            @for (l of d.levels; track l) {
+              <span class="badge level">{{ l }}</span>
+            }
+            @for (t of d.types; track t) {
+              <span class="badge type">{{ t }}</span>
+            }
+            @for (a of d.attributes; track a) {
+              <span class="badge attr">{{ a }}</span>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-body">
+        @if (d.descriptions?.length) {
+          <p class="description">{{ d.descriptions?.[1] ?? d.descriptions?.[0] }}</p>
+        }
+
+        <div class="evo-section">
+          <h3>🧬 Évolue depuis</h3>
+          <ul>
+            @for (e of d.priorEvolutions; track e.id) {
+              <li><a [routerLink]="['/digimon', e.id]">{{ e.digimon }}</a>
+                @if (e.condition) { <span>— {{ e.condition }}</span> }
+              </li>
+            } @empty {
+              <li class="empty">—</li>
+            }
+          </ul>
+        </div>
+
+        <div class="evo-section">
+          <h3>🧬 Évolue vers</h3>
+          <ul>
+            @for (e of d.nextEvolutions; track e.id) {
+              <li><a [routerLink]="['/digimon', e.id]">{{ e.digimon }}</a>
+                @if (e.condition) { <span>— {{ e.condition }}</span> }
+              </li>
+            } @empty {
+              <li class="empty">—</li>
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  }
+</div>
